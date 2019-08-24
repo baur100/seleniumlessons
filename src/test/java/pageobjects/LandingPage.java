@@ -30,4 +30,19 @@ public class LandingPage extends BasePage{
         wait.until(x->x.findElement(By.xpath("//*[contains(text(),'travels created by locals for')]")).isDisplayed());
         return driver.getCurrentUrl().equals("https://deens-master.now.sh/");
     }
+    public WebElement getProfileIcon(){
+        return wait.until(x->x.findElement(By.xpath("(//*[@class=' ls-is-cached lazyloaded'])[1]")));
+    }
+    public WebElement getProfileMenuItem(){
+        return wait.until(x->x.findElement(By.xpath("//*[@class='text' and text()='Profile']")));
+    }
+
+    public ProfilePage openProfile() {
+        WebElement profileIcon = getProfileIcon();
+        profileIcon.click();
+        WebElement profileMenuItem = getProfileMenuItem();
+        profileMenuItem.click();
+        ProfilePage profilePage = new ProfilePage(driver);
+        return profilePage;
+    }
 }
