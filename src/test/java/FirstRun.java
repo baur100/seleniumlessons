@@ -73,8 +73,9 @@ public class FirstRun {
         WebElement loginPageButton=driver.findElement(By.xpath("//*[@href='/login']"));
         loginPageButton.click();
 
-        WebElement emailField = wait.until(ExpectedConditions.elementToBeClickable(By.id("email")));
-//        WebElement emailField=driver.findElement(By.id("email"));
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.id("email")));
+        WebElement emailField=driver.findElement(By.id("email"));
         emailField.sendKeys("smarot10");
 
         WebElement passwordField=driver.findElement(By.name("password"));
@@ -96,7 +97,8 @@ public class FirstRun {
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofMillis(200))
                 .withMessage("Sorry - could not found element")
-                .ignoring(StaleElementReferenceException.class);
+                .ignoring(StaleElementReferenceException.class)
+                .ignoring(NoSuchElementException.class);
 
         driver.get("https://deens-master.now.sh/");
         WebElement loginPageButton=driver.findElement(By.xpath("//*[@href='/login']"));
