@@ -13,15 +13,15 @@ public class LandingPage extends BasePage{
         driver.get("https://deens-master.now.sh/");
     }
 
-    public LoginPage openLogingPage() {
-        WebElement loginButton=getLogingButton();
+    public LoginPage openLoginPage() {
+        WebElement loginButton= getLoginButton();
         loginButton.click();
         LoginPage loginPage = new LoginPage(driver);
 
         return loginPage;
     }
 
-    private WebElement getLogingButton() {
+    private WebElement getLoginButton() {
         WebElement element=driver.findElement(By.partialLinkText("Login"));
         return element;
     }
@@ -30,10 +30,11 @@ public class LandingPage extends BasePage{
         wait.until(x->x.findElement(By.xpath("//*[contains(text(),'travels created by locals for')]")).isDisplayed());
         return driver.getCurrentUrl().equals("https://deens-master.now.sh/");
     }
-    public WebElement getProfileIcon(){
+    
+    private WebElement getProfileIcon(){
         return wait.until(x->x.findElement(By.xpath("(//*[@class=' ls-is-cached lazyloaded'])[1]")));
     }
-    public WebElement getProfileMenuItem(){
+    private WebElement getProfileMenuItem(){
         return wait.until(x->x.findElement(By.xpath("//*[@class='text' and text()='Profile']")));
     }
 
@@ -42,7 +43,6 @@ public class LandingPage extends BasePage{
         profileIcon.click();
         WebElement profileMenuItem = getProfileMenuItem();
         profileMenuItem.click();
-        ProfilePage profilePage = new ProfilePage(driver);
-        return profilePage;
+        return new ProfilePage(driver);
     }
 }

@@ -17,18 +17,15 @@ public class LoginPage extends BasePage{
         passwordField.sendKeys(password);
         WebElement loginButton = getLoginButton();
         loginButton.click();
-        LandingPage landingPage=new LandingPage(driver);
-        return landingPage;
+        return new LandingPage(driver);
     }
 
     private WebElement getLoginButton() {
-        WebElement loginButton=driver.findElement(By.xpath("//*[@data-testid='loginSubmit']"));
-        return loginButton;
+        return By.xpath("//*[@data-testid='loginSubmit']").findElement(driver);
     }
 
     private WebElement getPasswordField() {
-        WebElement passwordField=driver.findElement(By.name("password"));
-        return passwordField;
+        return driver.findElement(By.name("password"));
     }
 
     private WebElement getEmailField() {
